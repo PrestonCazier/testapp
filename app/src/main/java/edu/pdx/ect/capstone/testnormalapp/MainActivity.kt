@@ -9,8 +9,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.content.Intent
-
-
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +26,19 @@ class MainActivity : AppCompatActivity() {
         // Example of a call to a native method
         sample_text.text = stringFromJNI()
 
+        val intent = Intent(this, BackgroundWifiService::class.java)
+        startService(intent)
+    }
 
+    fun startService(view: View) {
         // start our service here
         val intent = Intent(this, BackgroundWifiService::class.java)
         startService(intent)
+    }
+
+    fun stopService(view : View) {
+        val intent = Intent(this, BackgroundWifiService::class.java)
+        stopService(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
